@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:language_learning_ui/constants.dart';
+import 'package:language_learning_ui/core/constants/constants.dart';
 
 class LanguageSelector extends StatelessWidget {
   final bool isActive;
   final String language;
   final String imagePath;
-  LanguageSelector({this.isActive, this.language, this.imagePath});
+  LanguageSelector(
+      {required this.isActive,
+      required this.language,
+      required this.imagePath});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -24,7 +26,7 @@ class LanguageSelector extends StatelessWidget {
               color: Color.fromRGBO(169, 176, 185, 0.42),
               spreadRadius: 0,
               blurRadius: 8,
-              offset: Offset(0, 2), // changes position of shadow
+              offset: Offset(0, 2),
             ),
           ],
         ),
@@ -49,7 +51,7 @@ class LanguageSelector extends StatelessWidget {
               Container(
                 child: isActive
                     ? Icon(
-                        FlutterIcons.check_circle_mdi,
+                        Icons.check_circle_outline,
                         color: Constants.primaryColor,
                       )
                     : SizedBox.shrink(),

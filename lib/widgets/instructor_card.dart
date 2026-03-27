@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:language_learning_ui/models/instructor_model.dart';
+import 'package:language_learning_ui/data/models/instructor_model.dart';
 
 class InstructorCard extends StatelessWidget {
   final InstructorModel instructor;
-  InstructorCard({this.instructor});
+  InstructorCard({required this.instructor});
   @override
   Widget build(BuildContext context) {
     return Stack(

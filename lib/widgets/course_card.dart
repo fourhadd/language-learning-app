@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:language_learning_ui/constants.dart';
-import 'package:language_learning_ui/models/course_model.dart';
+import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:language_learning_ui/data/models/course_model.dart';
 
 class CourseCard extends StatelessWidget {
   final CourseModel course;
-  CourseCard({this.course});
+  CourseCard({required this.course});
   @override
   Widget build(BuildContext context) {
     return Container(

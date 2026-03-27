@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:language_learning_ui/constants.dart';
-import 'package:language_learning_ui/models/topic_model.dart';
+import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:language_learning_ui/data/models/topic_model.dart';
 import 'package:language_learning_ui/pages/lesson_screen.dart';
 
 class TopicCard extends StatelessWidget {
   final TopicModel topic;
-  TopicCard({this.topic});
+  TopicCard({required this.topic});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

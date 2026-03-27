@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:language_learning_ui/constants.dart';
-import 'package:language_learning_ui/models/lesson_model.dart';
-import 'package:language_learning_ui/widgets/bottom_bar.dart';
+import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:language_learning_ui/data/models/lesson_model.dart';
+import 'package:language_learning_ui/core/common/bottom_bar.dart';
 import 'package:language_learning_ui/widgets/lesson_card.dart';
-import 'package:language_learning_ui/widgets/user_menu_bar.dart';
+import 'package:language_learning_ui/features/dashboard/presentation/widgets/user_menu_bar.dart';
 
 class LessonScreen extends StatefulWidget {
   @override
