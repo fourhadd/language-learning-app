@@ -1,34 +1,105 @@
-# 🔥 🔥 Language Learning Flutter UI Kit 🔥 🔥 💫 ⭐️ ⭐️ 👨‍💻
+# 📱 Aris Language Learning - Flutter Architecture & Refactor Project
 
-Free Flutter UI Kits based on designs on UpLabs 💓.
-Repo will be updated daily with new beautiful UI Kits.
+**Built with Flutter • Clean Architecture • BLoC • Scalable Design**
 
-Complete flutter projects are available on my
+A professional transformation of a legacy codebase into a modern, high-performance Flutter application. This project demonstrates strong knowledge of **Clean Architecture**, **SOLID principles**, and scalable mobile development.
 
-PRs are welcomed. Issues are welcomed too.
+---
 
-Send me UI suggestions for any uplabs project on
+## 🚀 The Mission: From Chaos to Clarity
 
-### Support App
+This project was initially provided with an unstructured and poorly organized codebase.
+The main goal was to refactor, restructure, and rebuild the application using modern Flutter development practices.
 
-> ⭐️ Star the repo to show support. ⭐️
+---
 
-> You can also support the project by buying me a cup of coffee ☕️.
+## ✅ Key Achievements
 
-> <a href=""><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=xPGLYEr&button_colour=BD5FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
+* Complete refactor of legacy codebase
+* Implemented feature-based Clean Architecture
+* Applied SOLID principles for maintainability
+* Improved code readability and structure
+* Updated and optimized dependencies
 
-Or Support me on Patreon
+---
 
-<a href="" data-patreon-widget-type="become-patron-button"><img src="https://raw.githubusercontent.com/codebard/patron-button-and-widgets-by-codebard/master/images/patreon-medium-button.png" alt="Become a Patreon!" /></a>
+## ✨ Key Features
 
-### 💻 Requirements
+* 🔐 User Authentication (Login & Register)
+* 💾 Persistent user data with SharedPreferences
+* 🌍 Multi-language support (EN, AZ, TR, RU)
+* ⭐ Favorites system with local storage
+* 📱 Responsive UI using flutter_screenutil
 
-- Any Operating System (MacOS, Linux, Windows)
-- Any IDE with Flutter SDK installed (Android Studio, VSCode etc)
-- A little knowledge of Dart and Flutter
+---
 
-### Screenshots
+## 🏗️ Architecture Overview
 
-![Screenshot 1](https://res.cloudinary.com/olayemii/image/upload/v1611746964/assets/ss1_pia2pp.png) ![Screenshot 2](https://res.cloudinary.com/olayemii/image/upload/v1611747003/assets/ss2_pgybzj.png) ![Screenshot 3](https://res.cloudinary.com/olayemii/image/upload/v1611747014/assets/ss3_a9syef.png) ![Screenshot 4](https://res.cloudinary.com/olayemii/image/upload/v1611747018/assets/ss4_pmelto.png)
+The project follows a **Feature-based Clean Architecture**, separating UI, business logic, and data layers.
 
-![Main Page](https://res.cloudinary.com/olayemii/image/upload/v1611748849/assets/language-1_oestuf.png)
+```
+lib/
+├── app/                # Entry point & global providers
+├── core/               # Constants, themes, shared utilities
+├── data/               # Models and data layer
+└── features/           # Feature-based modules
+    ├── auth/           # Authentication
+    ├── dashboard/      # Main screen
+    ├── favorites/      # Saved items
+    ├── language/       # Localization
+    ├── lessons/        # Lesson system
+    └── profile/        # User profile
+```
+
+---
+
+## ⚙️ State Management
+
+The application uses **BLoC / Cubit**:
+
+* Separation of UI and business logic
+* Predictable and scalable state flow
+* Improved performance and maintainability
+
+---
+
+## 🛠 Technologies Used
+
+* Flutter
+* Dart
+* BLoC / Cubit
+* SharedPreferences
+* flutter_screenutil
+* Google Fonts
+
+---
+
+## 📈 Improvements Made
+
+* Refactored messy and unstructured codebase
+* Separated concerns (UI, logic, data)
+* Improved performance and rebuild efficiency
+* Standardized naming and structure
+* Made the app scalable for future features
+
+---
+
+## 📌 Future Roadmap
+
+* [ ] API Integration (REST / GraphQL)
+* [ ] Backend integration (Firebase / Supabase)
+* [ ] Unit & Widget Testing
+* [ ] Advanced progress tracking
+* [ ] Dark mode support
+
+---
+
+## 👨‍💻 Developer
+
+**Fərhad Kərimov (fourhadd)**
+
+---
+
+## ⭐ Final Note
+
+This project demonstrates the ability to analyze an existing codebase, refactor it, and rebuild it using scalable architecture and clean coding principles. It reflects real-world development skills, including problem-solving, system design, and code optimization.
