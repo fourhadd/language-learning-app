@@ -1,22 +1,28 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'language_state.dart';
 
 class LanguageCubit extends Cubit<LanguageState> {
-  LanguageCubit() : super(LanguageInitial());
+  LanguageCubit() : super(const LanguageState(Locale('en'))) {
+    loadSavedLanguage();
+  }
 
-  Future<void> saveLanguage(String languageName) async {
-    emit(LanguageLoading());
+  Future<void> loadSavedLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? langCode = prefs.getString('interface_language');
 
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('user_language', languageName);
-
-      emit(LanguageSuccess(languageName));
-    } catch (e) {
-      emit(LanguageError("Dili yadda saxlamaq mümkün olmadı"));
+    if (langCode != null) {
+      emit(LanguageState(Locale(langCode)));
+    } else {
+      emit(const LanguageState(Locale('en')));
     }
+  }
+
+  Future<void> changeInterfaceLanguage(String langCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('interface_language', langCode);
+    emit(LanguageState(Locale(langCode)));
   }
 }

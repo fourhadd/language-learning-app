@@ -8,8 +8,10 @@ class BorderTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final double borderRadius;
   final TextEditingController? controller;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onTap;
 
-  const BorderTextField({
+  BorderTextField({
     super.key,
     required this.hintText,
     this.obscureText = false,
@@ -17,6 +19,8 @@ class BorderTextField extends StatelessWidget {
     this.prefixIcon,
     this.borderRadius = 8.0,
     this.controller,
+    this.onChanged,
+    this.onTap,
   });
 
   @override
@@ -27,7 +31,7 @@ class BorderTextField extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(borderRadius),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: Color.fromRGBO(169, 176, 185, 0.42),
             spreadRadius: 0,
@@ -37,14 +41,16 @@ class BorderTextField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        onTap: onTap,
         controller: controller,
         obscureText: obscureText,
+        onChanged: onChanged,
         decoration: InputDecoration(
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           border: InputBorder.none,
           hintText: hintText,
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             fontSize: 14.0,
             color: Color.fromRGBO(169, 176, 185, 1),
           ),

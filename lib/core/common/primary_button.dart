@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:language_learning_ui/core/theme/app_color.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -20,7 +20,7 @@ class PrimaryButton extends StatelessWidget {
         width: double.infinity,
         height: ScreenUtil().setHeight(50.0),
         decoration: BoxDecoration(
-          color: Constants.primaryColor,
+          color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: [
             BoxShadow(

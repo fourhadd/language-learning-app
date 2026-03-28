@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:language_learning_ui/core/common/primary_button.dart';
+import 'package:language_learning_ui/core/theme/app_color.dart';
 import 'package:language_learning_ui/features/auth/cubit/auth_cubit.dart';
+import 'package:language_learning_ui/features/auth/presentation/widgets/login_footer.dart';
+import 'package:language_learning_ui/features/auth/presentation/widgets/login_form.dart';
 import 'package:language_learning_ui/features/auth/presentation/widgets/social_logins.dart';
-import 'package:language_learning_ui/widgets/border_text_field.dart';
+import 'package:language_learning_ui/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:language_learning_ui/l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  bool _isPasswordVisible = false;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -25,132 +30,77 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            Navigator.of(context).pushReplacementNamed("/");
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Dashboard()),
+              (route) => false,
+            );
           } else if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                  content: Text(state.message), backgroundColor: Colors.red),
+                content: Text(context
+                    .read<AuthCubit>()
+                    .getLocalizedError(context, state.message)),
+                backgroundColor: Colors.red,
+              ),
             );
           }
         },
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(horizontal: 14.0.w),
           child: SafeArea(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 40.0),
-                  Text(
-                    "Login to Your \nAccount",
-                    style: TextStyle(
-                      fontSize: 28.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(height: 40.0.h),
+                Text(
+                  lang.loginTitle,
+                  style: TextStyle(
+                      fontSize: 28.0.sp,
                       fontWeight: FontWeight.w600,
-                      color: Constants.primaryTextColor,
-                    ),
+                      color: AppColor.primaryTextColor),
+                ),
+                SizedBox(height: 40.0.h),
+                SocialLogins(),
+                SizedBox(height: 40.0.h),
+                LoginForm(
+                    email: _emailController, password: _passwordController),
+                SizedBox(height: 10.0.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(lang.forgotPassword,
+                        style: TextStyle(color: AppColor.primaryColor)),
                   ),
-                  const SizedBox(height: 40.0),
-                  SocialLogins(),
-                  const SizedBox(height: 40.0),
-                  BorderTextField(
-                    hintText: "Email",
-                    controller: _emailController,
-                  ),
-                  const SizedBox(height: 15.0),
-                  BorderTextField(
-                    controller: _passwordController,
-                    hintText: "Password",
-                    obscureText: !_isPasswordVisible,
-                    prefixIcon:
-                        const Icon(Icons.lock_outline, color: Colors.black),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        color: Constants.primaryColor,
-                      ),
+                ),
+                SizedBox(height: 20.0.h),
+                BlocBuilder<AuthCubit, AuthState>(
+                  builder: (context, state) {
+                    if (state is AuthLoading)
+                      return Center(child: CircularProgressIndicator());
+                    return PrimaryButton(
+                      text: lang.logIn,
                       onPressed: () {
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text("Forgot Password?",
-                          style: TextStyle(color: Constants.primaryColor)),
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  BlocConsumer<AuthCubit, AuthState>(
-                    listener: (context, state) {
-                      if (state is AuthSuccess) {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          "/dashboard",
-                          (route) => false,
-                        );
-                      }
-                      if (state is AuthError) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(state.message),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is AuthLoading) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      return PrimaryButton(
-                        text: "Log In",
-                        onPressed: () {
-                          context.read<AuthCubit>().login(
-                                email: _emailController.text,
-                                password: _passwordController.text,
-                              );
-                        },
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 30.0),
-                  Center(
-                    child: Wrap(
-                      children: [
-                        const Text("Don't have an account? ",
-                            style: TextStyle(fontSize: 16.0)),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                              "/register",
-                              (Route<dynamic> route) => false,
+                        context.read<AuthCubit>().login(
+                              email: _emailController.text,
+                              password: _passwordController.text,
                             );
-                          },
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Constants.primaryColor,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                      },
+                    );
+                  },
+                ),
+                SizedBox(height: 30.0.h),
+                LoginFooter(),
+                SizedBox(height: 20.0.h),
+              ],
             ),
           ),
         ),

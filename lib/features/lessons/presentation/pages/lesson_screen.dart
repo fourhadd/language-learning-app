@@ -1,75 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:language_learning_ui/core/theme/app_color.dart';
 import 'package:language_learning_ui/data/models/lesson_model.dart';
 import 'package:language_learning_ui/core/common/bottom_bar.dart';
-import 'package:language_learning_ui/widgets/lesson_card.dart';
+import 'package:language_learning_ui/features/lessons/presentation/widgets/lesson_card.dart';
 import 'package:language_learning_ui/features/dashboard/presentation/widgets/user_menu_bar.dart';
+import 'package:language_learning_ui/l10n/app_localizations.dart';
 
 class LessonScreen extends StatefulWidget {
+  const LessonScreen({super.key});
+
   @override
   _LessonScreenState createState() => _LessonScreenState();
 }
 
 class _LessonScreenState extends State<LessonScreen> {
-  List<LessonModel> lessons = [
-    LessonModel(
-      imagePath: "assets/images/lesson.png",
-      title: "Introduction",
-      duration: "10 minutes 20 seconds",
-    ),
-    LessonModel(
-      imagePath: "assets/images/lesson.png",
-      title: "Lesson 01",
-      duration: "25 minutes 20 seconds",
-    ),
-    LessonModel(
-      imagePath: "assets/images/lesson.png",
-      title: "Lesson 02",
-      duration: "13 minutes 20 seconds",
-    ),
-    LessonModel(
-      imagePath: "assets/images/lesson.png",
-      title: "Lesson 03",
-      duration: "45 minutes 20 seconds",
-    ),
-    LessonModel(
-      imagePath: "assets/images/lesson.png",
-      title: "Lesson 04",
-      duration: "10 minutes 20 seconds",
-    )
-  ];
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context)!;
+    final lessons = LessonModel.lessons;
+
     return Scaffold(
       bottomNavigationBar: BottomBar(),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 16.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
-                  height: 30.0,
-                ),
+                SizedBox(height: 30.0.h),
                 UserMenuBar(),
-                SizedBox(
-                  height: 15.0,
-                ),
+                SizedBox(height: 15.0.h),
                 Container(
-                  height: ScreenUtil().setHeight(180.0),
-                  width: ScreenUtil().setWidth(339.24),
+                  height: 190.0.h,
+                  width: 339.0.w,
                   decoration: BoxDecoration(
-                    color: Constants.primaryColor,
-                    borderRadius: BorderRadius.circular(8.0),
+                    color: AppColor.primaryColor,
+                    borderRadius: BorderRadius.circular(8.0.r),
                     boxShadow: [
                       BoxShadow(
-                        color: Color.fromRGBO(255, 99, 128, 0.6),
+                        color: AppColor.primaryLightColor,
                         spreadRadius: 0,
-                        blurRadius: 6,
-                        offset: Offset(0, 2), // changes position of shadow
+                        blurRadius: 6.r,
+                        offset: Offset(0, 2),
                       ),
                     ],
                   ),
@@ -77,7 +52,7 @@ class _LessonScreenState extends State<LessonScreen> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: EdgeInsets.all(10.0.w),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,8 +60,8 @@ class _LessonScreenState extends State<LessonScreen> {
                               Row(
                                 children: [
                                   Container(
-                                    width: 30.0,
-                                    height: 30.0,
+                                    width: 30.0.w,
+                                    height: 30.0.h,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Colors.white,
@@ -95,38 +70,37 @@ class _LessonScreenState extends State<LessonScreen> {
                                       child: Text(
                                         "20",
                                         style: TextStyle(
-                                          color: Constants.primaryTextColor,
+                                          color: AppColor.primaryTextColor,
                                           fontWeight: FontWeight.w600,
+                                          fontSize: 14.0.sp,
                                         ),
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 10.0,
-                                  ),
+                                  SizedBox(width: 10.0.w),
                                   Text(
-                                    "Points",
+                                    lang.points,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 14.0,
+                                      fontSize: 14.0.sp,
                                     ),
                                   )
                                 ],
                               ),
                               Text(
-                                "Daily English Conversation",
+                                lang.dailyEnglishConversation,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 24.0,
+                                  fontSize: 24.0.sp,
                                 ),
                               ),
                               Text(
-                                "Learn More",
+                                lang.learnMore,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20.0,
+                                  fontSize: 20.0.sp,
                                 ),
                               )
                             ],
@@ -138,9 +112,7 @@ class _LessonScreenState extends State<LessonScreen> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: AssetImage(
-                                "assets/images/course-1.png",
-                              ),
+                              image: AssetImage("assets/images/course-1.png"),
                             ),
                           ),
                         ),
@@ -148,42 +120,39 @@ class _LessonScreenState extends State<LessonScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
+                SizedBox(height: 30.0.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "My lessons",
+                      lang.myLessons,
                       style: TextStyle(
-                        fontSize: 21.0,
-                        color: Constants.primaryTextColor,
+                        fontSize: 21.0.sp,
+                        color: AppColor.primaryTextColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
-                      "View all",
+                      lang.viewAll,
                       style: TextStyle(
-                        fontSize: 15.0,
-                        color: Constants.captionTextColor,
+                        fontSize: 15.0.sp,
+                        color: AppColor.captionTextColor,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 12.0,
-                ),
+                SizedBox(height: 12.0.h),
                 Flexible(
                   child: ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
+                    itemCount: lessons.length,
                     itemBuilder: (BuildContext context, int index) {
                       return LessonCard(lesson: lessons[index]);
                     },
-                    itemCount: lessons.length,
                   ),
-                )
+                ),
+                SizedBox(height: 20.0.h),
               ],
             ),
           ),

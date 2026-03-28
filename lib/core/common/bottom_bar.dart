@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:language_learning_ui/core/theme/app_color.dart';
 
 class BottomBar extends StatelessWidget {
   @override
@@ -9,10 +9,10 @@ class BottomBar extends StatelessWidget {
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
       unselectedIconTheme: IconThemeData(
-        color: Color.fromRGBO(202, 205, 219, 1),
+        color: AppColor.lightGreyColor,
       ),
       selectedIconTheme: IconThemeData(
-        color: Constants.primaryColor,
+        color: AppColor.primaryColor,
       ),
       items: [
         BottomNavigationBarItem(

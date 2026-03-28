@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:language_learning_ui/core/constants/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:language_learning_ui/core/theme/app_color.dart';
+import 'package:language_learning_ui/l10n/app_localizations.dart';
 
 class DashboardSectionTitle extends StatelessWidget {
   final String title;
@@ -13,23 +15,25 @@ class DashboardSectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context)!;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
           style: TextStyle(
-            fontSize: 21.0,
-            color: Constants.primaryTextColor,
+            fontSize: 21.0.sp,
+            color: AppColor.primaryTextColor,
             fontWeight: FontWeight.w600,
           ),
         ),
         if (showViewAll)
           Text(
-            "View all",
+            lang.viewAll,
             style: TextStyle(
-              fontSize: 15.0,
-              color: Constants.captionTextColor,
+              fontSize: 15.0.sp,
+              color: AppColor.captionTextColor,
             ),
           ),
       ],

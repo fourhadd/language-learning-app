@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:language_learning_ui/core/theme/app_color.dart';
 import 'package:language_learning_ui/data/models/course_model.dart';
 import 'package:language_learning_ui/data/models/instructor_model.dart';
 import 'package:language_learning_ui/data/models/topic_model.dart';
 
 class Constants {
-  static const Color primaryTextColor = Color.fromRGBO(38, 50, 98, 1);
-  static const Color captionTextColor = Color.fromRGBO(157, 161, 180, 1);
-  static const Color primaryColor = Color.fromRGBO(255, 99, 128, 1.0);
-
   static List<TopicModel> topics = [
     TopicModel(
-      color: Constants.primaryColor,
+      color: AppColor.primaryColor,
       boxShadow: [
         BoxShadow(
           color: Color.fromRGBO(255, 99, 128, 0.6),
           spreadRadius: 0,
           blurRadius: 6,
-          offset: Offset(0, 2), // changes position of shadow
+          offset: Offset(0, 2),
         ),
       ],
       topic: "interjections & colloquial",
@@ -31,7 +28,7 @@ class Constants {
           color: Color.fromRGBO(25, 118, 210, 0.6),
           spreadRadius: 0,
           blurRadius: 6,
-          offset: Offset(0, 2), // changes position of shadow
+          offset: Offset(0, 2),
         ),
       ],
       topic: "interjections & colloquial",
@@ -49,18 +46,28 @@ class Constants {
   static List<CourseModel> courses = [
     CourseModel(
       name: "Daily English Conversation",
-      color: Color.fromRGBO(86, 131, 223, 1),
+      colorValue: 0xFF5683DF,
       image: "assets/images/course-3.png",
     ),
     CourseModel(
       name: "Learn new vocabulary",
-      color: Color.fromRGBO(255, 152, 117, 1),
+      colorValue: 0xFFFF9875,
       image: "assets/images/course-4.png",
     ),
     CourseModel(
-      name: "Daily English Conversation",
-      color: Color.fromRGBO(255, 133, 125, 1),
+      name: "Business English Masterclass",
+      colorValue: 0xFF8E56DF,
       image: "assets/images/course-5.png",
+    ),
+    CourseModel(
+      name: "English Grammar Essentials",
+      colorValue: 0xFF56DF92,
+      image: "assets/images/course-1.png",
+    ),
+    CourseModel(
+      name: "Listening & Speaking Skills",
+      colorValue: 0xFFFF857D,
+      image: "assets/images/course-2.png",
     ),
   ];
   static List<InstructorModel> instructors = [

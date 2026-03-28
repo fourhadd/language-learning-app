@@ -1,18 +1,11 @@
 part of 'language_cubit.dart';
 
-@immutable
-abstract class LanguageState {}
+class LanguageState {
+  final Locale selectedLocale;
 
-class LanguageInitial extends LanguageState {}
-
-class LanguageLoading extends LanguageState {}
-
-class LanguageSuccess extends LanguageState {
-  final String selectedLanguage;
-  LanguageSuccess(this.selectedLanguage);
+  const LanguageState(this.selectedLocale);
 }
 
-class LanguageError extends LanguageState {
-  final String message;
-  LanguageError(this.message);
+class LanguageInitial extends LanguageState {
+  const LanguageInitial() : super(const Locale('en'));
 }
