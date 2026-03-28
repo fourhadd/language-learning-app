@@ -1,4 +1,4 @@
-# 📱 Aris Language Learning - Flutter Architecture & Refactor Project
+# 📱 Language Learning - Flutter Architecture & Refactor Project
 
 **Built with Flutter • Clean Architecture • BLoC • Scalable Design**
 
