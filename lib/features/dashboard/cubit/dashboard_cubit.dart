@@ -19,6 +19,16 @@ class DashboardCubit extends Cubit<DashboardState> {
     emit(state.copyWith(selectedIndex: index));
   }
 
+  void resetDashboard() {
+    emit(DashboardState(
+      selectedIndex: 0,
+      isSearching: false,
+      isLoading: false,
+      displayedCourses: Constants.courses,
+      displayedInstructors: Constants.instructors,
+    ));
+  }
+
   void startLoading() {
     emit(state.copyWith(isLoading: true));
   }

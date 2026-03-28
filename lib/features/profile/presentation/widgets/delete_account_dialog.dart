@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:language_learning_ui/features/auth/cubit/auth_cubit.dart';
+import 'package:language_learning_ui/features/dashboard/cubit/dashboard_cubit.dart';
 import 'package:language_learning_ui/features/favorites/cubit/favourites_cubit.dart';
 import 'package:language_learning_ui/l10n/app_localizations.dart';
 
@@ -33,6 +34,7 @@ class DeleteAccountDialog extends StatelessWidget {
         TextButton(
           onPressed: () async {
             await context.read<FavouritesCubit>().clearAll();
+            context.read<DashboardCubit>().resetDashboard();
             if (context.mounted) {
               await context.read<AuthCubit>().deleteAccount();
             }
